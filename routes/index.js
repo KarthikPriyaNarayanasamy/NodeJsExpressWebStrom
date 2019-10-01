@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
 router.get('/mongodb', function (request, response, next) {
   MongoClient.connect("mongodb://karthikpriya:Db%40pass1@ds157223.mlab.com:57223/heroku_7386fvlz", function(err, database) {
     if(err) throw err;
-    //get collection of routes
+    //get collection of route
     const myAwesomeDB = database.db('heroku_7386fvlz')
     var Routes = myAwesomeDB.collection('Routes');
     //get all Routes with frequency >=1
