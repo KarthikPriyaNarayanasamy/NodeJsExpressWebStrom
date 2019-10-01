@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
 
 //**************************************************************************
 //***** mongodb get all of the Routes in Routes collection where frequence>=1
-//      and sort by the name of the route.  Render information in the views/pages/mongodb.ejs
+//      and sort by the name of the route.  Render information in the views/mongodb.ejs
 router.get('/mongodb', function (request, response, next) {
   MongoClient.connect("mongodb://karthikpriya:Db%40pass1@ds157223.mlab.com:57223/heroku_7386fvlz", function(err, database) {
     if(err) throw err;
@@ -17,11 +17,9 @@ router.get('/mongodb', function (request, response, next) {
     const myAwesomeDB = database.db('heroku_7386fvlz')
     var Routes = myAwesomeDB.collection('Routes');
     //get all Routes with frequency >=1
-    Routes.find({ frequency : { $gte: 0 } }).sort({ name: 1 }).toArray(function (err, docs) {
+    Routes.find({ frequency : { $gte: 1 } }).sort({ name: 1 }).toArray(function (err, docs) {
       if(err) throw err;
-
       response.render('mongodb', {results: docs});
-
     });
 
     //close connection when your app is terminating.
